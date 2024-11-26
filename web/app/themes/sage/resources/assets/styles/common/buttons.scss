@@ -1,0 +1,96 @@
+.btn {
+  &_primary {
+    &-banner {
+      display: inline-flex;
+      padding: 16px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 17.6px;
+      letter-spacing: -2%;
+      color: var(--purple);
+      background: var(--white);
+      border-radius: 25px;
+      transition: 0.3s ease;
+      min-width: 126px;
+      gap: 8px;
+      align-items: center;
+
+      &:hover {
+        opacity: 0.8;
+        transition: 0.3s ease;
+      }
+
+      @media (max-width: 1023px) {
+        font-size: 15px;
+        line-height: 18px;
+        letter-spacing: -2%;
+      }
+    }
+
+    &-header {
+      display: inline-flex;
+      padding: 11px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 17.6px;
+      letter-spacing: -2%;
+      color: white;
+      background: linear-gradient(75deg, #8585ff 0%, #6e6eea 100%);
+      border-radius: 20px;
+      transition: 0.3s ease;
+      gap: 8px;
+      align-items: center;
+
+      &:hover {
+        opacity: 0.8;
+        transition: 0.3s ease;
+      }
+    }
+  }
+
+  &_secondary {
+    &-header {
+      display: inline-flex;
+      padding: 11px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 17.6px;
+      letter-spacing: -2%;
+      color: var(--primary);
+      background: rgba(245, 247, 250, 1);
+      border-radius: 20px;
+      gap: 8px;
+      transition: 0.3s ease;
+
+      &:hover {
+        color: var(--purple);
+        transition: 0.3s ease;
+      }
+    }
+
+    &-banner {
+      display: inline-flex;
+      padding: 16px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 17.6px;
+      letter-spacing: -2%;
+      color: var(--white);
+      border: 1.5px solid var(--white);
+      border-radius: 25px;
+      gap: 8px;
+      transition: 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+        transition: 0.3s ease;
+      }
+
+      @media (max-width: 1023px) {
+        font-size: 15px;
+        line-height: 18px;
+        letter-spacing: -2%;
+      }
+    }
+  }
+}

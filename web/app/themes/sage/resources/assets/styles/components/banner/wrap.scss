@@ -1,0 +1,116 @@
+.banner {
+  width: 100%;
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(75deg, #8585ff 0%, #6e6eea 100%);
+  // background: url("../images/background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @media (max-width: 767px) {
+    background: linear-gradient(75deg, #8585ff 0%, #6e6eea 100%);
+  }
+
+  &__wrap {
+    padding-top: 346px;
+    max-width: 440px;
+
+    @media (max-width: 767px) {
+      margin: auto;
+      text-align: center;
+    }
+  }
+
+  &__span {
+    padding-bottom: 24px;
+
+    h3 {
+      color: var(--white);
+      font-weight: 800;
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: -2%;
+
+      @media (max-width: 767px) {
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+      }
+    }
+  }
+
+  &__title {
+    padding-bottom: 16px;
+
+    h1 {
+      font-size: 90px;
+      color: var(--white);
+      line-height: 90px;
+      letter-spacing: -3%;
+      font-weight: 800;
+
+      img {
+        width: 90px;
+
+        @media (max-width: 1279px) {
+          width: 80px;
+        }
+
+        @media (max-width: 479px) {
+          width: 60px;
+        }
+      }
+
+      @media (max-width: 1279px) {
+        font-size: 80px;
+        line-height: 80px;
+      }
+
+      @media (max-width: 479px) {
+        font-size: 60px;
+        line-height: 60px;
+      }
+    }
+  }
+
+  &__text {
+    padding-bottom: 48px;
+
+    @media (max-width: 1279px) {
+      padding-bottom: 36px;
+    }
+
+    @media (max-width: 479px) {
+      padding-bottom: 24px;
+    }
+
+    p {
+      font-size: 16px;
+      color: var(--white);
+      line-height: 22.4px;
+      letter-spacing: -3%;
+      font-weight: 600;
+
+      @media (max-width: 767px) {
+        font-size: 15px;
+        line-height: 21px;
+        letter-spacing: -2%;
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 8px;
+
+    @media (max-width: 767px) {
+      justify-content: center;
+    }
+
+    @media (max-width: 479px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

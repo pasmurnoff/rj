@@ -1,6 +1,11 @@
 @import "common/variables";
 @import "common/global";
+@import "common/buttons";
 
 /* Components */
 @import "components/header/init";
+@import "components/banner/init";
+@import "components/section/init";
+@import "components/about-section/init";
+@import "components/team-section/init";
 @import "components/footer/init";
