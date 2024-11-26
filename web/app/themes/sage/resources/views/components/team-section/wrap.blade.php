@@ -19,8 +19,29 @@
             </div>
         </div>
 
-
+        <div class="team-cards">
+            <div class="card">
+                <div class="card__image">
+                    <img src="">
+                </div>
+                <div class="card__wrap">
+                    <div class="card__title">
+                        <span>Климентий Исмагилов</span>
+                    </div>
+                    <div class="card__position">
+                        <span>Президент фонда</span>
+                    </div>
+                    <div class="card__quote">
+                        <blockquote>
+                            Безвыходность положения, может открыть дверь к чему-то новому. Всё зависит только от тебя.
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+    </div>
 
 
     </div>

@@ -1,0 +1,40 @@
+.team-cards {
+  .card {
+    padding: 12px;
+    background: var(--white);
+    border-radius: 24px;
+
+    &__wrap {
+      padding: 12px;
+    }
+
+    &__title {
+      padding-bottom: 4px;
+
+      span {
+        font-size: 20px;
+        line-height: 26px;
+        font-weight: 800;
+        letter-spacing: -2%;
+        color: var(--black);
+
+        @media screen and (max-width: 767px) {
+          font-size: 18px;
+          line-height: 23.4px;
+          font-weight: 800;
+          letter-spacing: -2%;
+        }
+      }
+    }
+
+    &__position {
+      span {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18.2px;
+        letter-spacing: -2%;
+        color: var(--grey);
+      }
+    }
+  }
+}
