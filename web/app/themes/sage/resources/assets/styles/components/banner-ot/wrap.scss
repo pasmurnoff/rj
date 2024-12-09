@@ -1,0 +1,138 @@
+.banner-ot {
+  width: 100%;
+  background: var(--white);
+
+  &__wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media screen and (max-width: 1023px) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 36px;
+    }
+  }
+
+  &__image {
+    position: relative;
+
+    @media screen and (max-width: 1023px) {
+      text-align: center;
+      order: 2;
+    }
+
+    img {
+      max-width: 440px;
+      position: absolute;
+      bottom: 0;
+
+      @media screen and (max-width: 1279px) {
+        max-width: 352px;
+      }
+
+      @media screen and (max-width: 1023px) {
+        max-width: 535px;
+        position: relative;
+        width: 100%;
+      }
+
+      @media screen and (max-width: 768px) {
+        max-width: 365px;
+        position: relative;
+        width: 100%;
+      }
+
+      @media screen and (max-width: 479px) {
+        max-width: 295px;
+        position: relative;
+        width: 100%;
+      }
+
+      @media screen and (max-width: 359px) {
+        max-width: 248px;
+        position: relative;
+        width: 100%;
+      }
+    }
+  }
+
+  &__text {
+    padding-top: 98px;
+    padding-bottom: 98px;
+    text-align: center;
+
+    @media screen and (max-width: 1279px) {
+      padding-top: 66px;
+      padding-bottom: 66px;
+    }
+
+    @media screen and (max-width: 1023px) {
+      padding-top: 48px;
+      padding-bottom: 0;
+      order: 1;
+    }
+
+    @media screen and (max-width: 767px) {
+      padding-top: 36px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 16px;
+
+    h2 {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 46.2px;
+      letter-spacing: -2%;
+      color: var(--black);
+
+      @media screen and (max-width: 1279px) {
+        font-size: 36px;
+        line-height: 39.6px;
+      }
+
+      @media screen and (max-width: 767px) {
+        font-size: 26px;
+        line-height: 28.6px;
+      }
+    }
+  }
+
+  &__descr {
+    margin-bottom: 36px;
+
+    p {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 22.4px;
+      letter-spacing: -3%;
+      color: var(--grey);
+
+      @media screen and (max-width: 767px) {
+        font-size: 15px;
+        line-height: 21.6px;
+      }
+    }
+  }
+
+  &__button {
+    a {
+      background: var(--light-grey);
+      padding-top: 11px;
+      padding-bottom: 11px;
+      padding-left: 16px;
+      padding-right: 16px;
+      border-radius: 20px;
+      color: var(--purple);
+      font-size: 16px;
+      line-height: 17.6px;
+      font-weight: 700;
+      letter-spacing: -2%;
+
+      @media screen and (max-width: 767px) {
+        font-size: 15px;
+        line-height: 18px;
+      }
+    }
+  }
+}

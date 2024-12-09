@@ -1,0 +1,114 @@
+.stories-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+
+  @media screen and (max-width: 1023px) {
+    gap: 24px;
+  }
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--white);
+    padding: 24px;
+    border-radius: 24px;
+
+    &__photo {
+      width: 78px;
+      height: 78px;
+      border-radius: 100px;
+      overflow: hidden;
+
+      @media screen and (max-width: 767px) {
+        width: 66px;
+        height: 66px;
+      }
+
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__person {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    &__name {
+      margin-bottom: 4px;
+
+      @media screen and (max-width: 479px) {
+        margin-bottom: 0;
+      }
+
+      span {
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 26px;
+        letter-spacing: -2%;
+        color: var(--black);
+
+        @media screen and (max-width: 767px) {
+          font-size: 18px;
+          line-height: 23.4px;
+        }
+      }
+    }
+
+    &__age {
+      span {
+        font-size: 14px;
+        line-height: 18.2px;
+        color: var(--grey);
+        font-weight: 600;
+      }
+    }
+
+    &__quote {
+      &_yellow {
+        margin-top: 24px;
+
+        blockquote {
+          padding: 12px;
+          background: #ff99000f;
+          border-left: 4px solid #f90;
+          border-radius: 4px 12px 12px 4px;
+          font-size: 16px;
+          line-height: 22.4px;
+          font-weight: 500;
+          color: var(--black);
+          display: flex;
+          gap: 8px;
+        }
+      }
+
+      &_green {
+        margin-top: 24px;
+
+        blockquote {
+          padding: 12px;
+          background: #0fcd720f;
+          border-left: 4px solid #0fcd72;
+          border-radius: 4px 12px 12px 4px;
+          font-size: 16px;
+          line-height: 22.4px;
+          font-weight: 500;
+          color: var(--black);
+          display: flex;
+          gap: 8px;
+
+          @media screen and (max-width: 767px) {
+            font-size: 15px;
+            line-height: 21px;
+          }
+        }
+      }
+    }
+  }
+}

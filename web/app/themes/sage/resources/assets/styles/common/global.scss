@@ -25,3 +25,20 @@ a {
     width: auto;
   }
 }
+
+.pg {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+  padding-bottom: 160px;
+
+  @media screen and (max-width: 1279px) {
+    gap: 120px;
+    padding-bottom: 120px;
+  }
+
+  @media screen and (max-width: 767px) {
+    gap: 100px;
+    padding-bottom: 100px;
+  }
+}

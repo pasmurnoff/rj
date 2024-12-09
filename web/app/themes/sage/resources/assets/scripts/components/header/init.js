@@ -1,4 +1,8 @@
-export default function () {
-  // There will be a JS-code for header
-  console.log('header Code')
-}
+$('.header-hamburger').on('click', function(e) {
+  $('.path').toggleClass('active');
+  $('.home').toggleClass('overflow');
+  $('.mobmenu').toggleClass('act');
+
+  e.preventDefault();
+});
+
