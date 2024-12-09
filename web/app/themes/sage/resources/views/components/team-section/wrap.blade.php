@@ -18,6 +18,16 @@
                     </svg>
                 </a>
             </div>
+
+            <div class="section__more_mobile" id="more_top">
+                    <a href="" class="link">Вступить в команду
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.7228 7.9985C12.7198 7.67301 12.6061 7.40203 12.3424 7.1413L6.72449 1.58777C6.52127 1.37815 6.27116 1.2793 5.97206 1.2793C5.36449 1.2793 4.87793 1.75648 4.87793 2.35809C4.87793 2.65079 5.00447 2.92816 5.2192 3.14971L10.1468 7.99552L5.2192 12.8473C5.00745 13.0688 4.87793 13.3399 4.87793 13.6419C4.87793 14.2435 5.36449 14.7207 5.97206 14.7207C6.26818 14.7207 6.52127 14.6219 6.72449 14.4123L12.3424 8.85571C12.609 8.59498 12.7228 8.32102 12.7228 7.9985Z"
+                                fill="#8585FF" />
+                        </svg>
+                    </a>
+                </div>
         </div>
 
         <div class="slider-container">
@@ -273,6 +283,8 @@
                 <button class="slider-btn prev-btn">←</button>
                 <button class="slider-btn next-btn">→</button>
             </div>
+            <div class="pagination">
+            </div>
         </div>
     </div>
 
@@ -280,57 +292,128 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    const teamCards = document.querySelector('.team-cards');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
+const teamCards = document.querySelector('.team-cards');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+const pagination = document.querySelector('.pagination');
 
-    let currentIndex = 0; // Начальный индекс слайда
-    const cardsToShow = 3; // Количество карточек на экране
-    const totalCards = document.querySelectorAll('.card-team').length;
+let currentIndex = 0; // Текущий индекс
+let cardsToShow = calculateCardsToShow(); // Количество карточек на экране
+const totalCards = document.querySelectorAll('.card-team').length;
+let totalPages = calculateTotalPages(); // Количество страниц
 
-    // Клонируем карточки для создания бесконечного зацикливания
-    const cards = document.querySelectorAll('.card-team');
-    cards.forEach((card) => {
-        const clone = card.cloneNode(true);
-        teamCards.appendChild(clone); // Добавляем копии в конец
+// Рассчитать количество карточек на экране в зависимости от ширины
+function calculateCardsToShow() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 767) return 1; // 1 карточка на маленьких экранах
+    if (screenWidth <= 1279) return 2; // 2 карточки при ширине до 1279px
+    return 3; // По умолчанию 3 карточки
+}
+
+// Рассчитать количество страниц с учетом количества карточек на экране
+function calculateTotalPages() {
+    if (cardsToShow === 3) {
+        return totalCards; // Листаем по одной карточке
+    } else {
+        return Math.ceil(totalCards / cardsToShow); // Листаем группами (по 1 или по 2)
+    }
+}
+
+// Рассчитать максимальный индекс для ограничения
+function getMaxIndex() {
+    if (cardsToShow === 3) {
+        return totalCards - cardsToShow; // Ограничиваем листание до последней видимой карточки
+    } else {
+        return totalPages - 1; // Последняя группа карточек
+    }
+}
+
+// Обновить слайдер
+function updateSlider() {
+    const cardWidth = teamCards.querySelector('.card-team').offsetWidth + 24; // Учитываем gap
+    const offset = currentIndex * cardWidth * (cardsToShow === 3 ? 1 : cardsToShow); // Смещение зависит от состояния
+    teamCards.style.transform = `translateX(-${offset}px)`;
+    updatePagination();
+}
+
+// Обновить пагинацию
+function updatePagination() {
+    if (!pagination) return; // Проверяем наличие контейнера пагинации
+    const dots = document.querySelectorAll('.pagination-dot');
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
     });
+}
 
-    function updateSlider() {
-        const cardWidth = teamCards.querySelector('.card-team').offsetWidth + 24; // Учитываем gap
-        teamCards.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-    }
-
-    // Обработчики для кнопок
-    prevBtn.addEventListener('click', () => slideToPrev());
-    nextBtn.addEventListener('click', () => slideToNext());
-
-    function slideToPrev() {
-        currentIndex--;
-        if (currentIndex < 0) {
-            currentIndex = totalCards - 1; // Переход к последней карточке
-            teamCards.style.transition = 'none'; // Убираем плавный переход
-            teamCards.style.transform = `translateX(-${
-            currentIndex * (teamCards.querySelector('.card-team').offsetWidth + 24)
-        }px)`; // Мгновенный переход
-            setTimeout(() => {
-                teamCards.style.transition = 'transform 0.5s ease-in-out'; // Включаем плавность
-            }, 50);
-        } else {
+// Создать пагинацию
+function createPagination() {
+    if (!pagination) return; // Проверяем наличие контейнера пагинации
+    pagination.innerHTML = ''; // Очистить контейнер
+    for (let i = 0; i < totalPages; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('pagination-dot');
+        if (i === currentIndex) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+            currentIndex = i;
             updateSlider();
-        }
+        });
+        pagination.appendChild(dot);
     }
+}
 
-    function slideToNext() {
-        currentIndex++;
-        if (currentIndex >= totalCards) {
-            currentIndex = 0; // Переход к первой карточке
-            teamCards.style.transition = 'none'; // Убираем плавный переход
-            teamCards.style.transform = `translateX(0px)`; // Мгновенный переход
-            setTimeout(() => {
-                teamCards.style.transition = 'transform 0.5s ease-in-out'; // Включаем плавность
-            }, 50);
-        } else {
-            updateSlider();
-        }
+// Листание назад
+prevBtn.addEventListener('click', () => {
+    currentIndex = Math.max(currentIndex - 1, 0); // Ограничение в 0
+    updateSlider();
+});
+
+// Листание вперед
+nextBtn.addEventListener('click', () => {
+    currentIndex = Math.min(currentIndex + 1, getMaxIndex()); // Ограничение до последней карточки/группы
+    updateSlider();
+});
+
+// Свайпы для мобильных устройств
+let startX = 0;
+let currentX = 0;
+let isSwiping = false;
+
+teamCards.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX; // Начальная точка касания
+    isSwiping = true;
+});
+
+teamCards.addEventListener('touchmove', (e) => {
+    if (!isSwiping) return;
+    currentX = e.touches[0].clientX;
+});
+
+teamCards.addEventListener('touchend', () => {
+    if (!isSwiping) return;
+    const swipeDistance = currentX - startX; // Расстояние свайпа
+    if (swipeDistance > 50) {
+        // Свайп вправо
+        currentIndex = Math.max(currentIndex - 1, 0);
+    } else if (swipeDistance < -50) {
+        // Свайп влево
+        currentIndex = Math.min(currentIndex + 1, getMaxIndex());
     }
+    updateSlider();
+    isSwiping = false;
+});
+
+// Обработчик изменения размера экрана
+window.addEventListener('resize', () => {
+    cardsToShow = calculateCardsToShow();
+    totalPages = calculateTotalPages();
+    createPagination();
+    updateSlider();
+});
+
+// Инициализация слайдера
+cardsToShow = calculateCardsToShow();
+totalPages = calculateTotalPages();
+createPagination();
+updateSlider();
+
 </script>

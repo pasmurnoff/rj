@@ -75,10 +75,192 @@
                             </a>
                         </div>
                     </div>
+
+                    <div id="news-slider" class="articles-slider slider-container">
+                <div class="news-cards">
+                    <?php
+// Параметры WP_Query для получения постов
+$args = [
+    'post_type' => 'post',       // Тип записи (например, 'post')
+    'posts_per_page' => 8,      // Лимит записей
+    'orderby' => 'date',        // Сортировка по дате
+    'order' => 'DESC',          // Сортировка в порядке убывания
+];
+$news_query = new WP_Query($args);
+
+// Проверяем, есть ли записи
+if ($news_query->have_posts()):
+    while ($news_query->have_posts()):
+        $news_query->the_post();
+        ?>
+                    <div class="card card-news">
+                        <div class="card__image">
+                            <?php        if (has_post_thumbnail()): ?>
+                            <!-- Если у записи есть миниатюра -->
+                            <img src="<?php            echo get_the_post_thumbnail_url(); ?>"
+                                alt="<?php            the_title(); ?>">
+                            <?php        else: ?>
+                            <!-- Если миниатюры нет, используется изображение-заглушка -->
+                            <img src="//localhost:3000/app/uploads/default-placeholder.jpeg" alt="Default image">
+                            <?php        endif; ?>
+                        </div>
+                        <div class="card__wrap">
+                            <div class="card__title">
+                                <h3><a href="<?php        the_permalink(); ?>"><?php        the_title(); ?></a></h3>
+                            </div>
+                            <div class="card__text">
+                                <p><?php        echo wp_trim_words(get_the_excerpt(), 20, '...'); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+    endwhile;
+    wp_reset_postdata(); // Сбрасываем глобальные переменные WP_Query
+else:
+        ?>
+                    <!-- Сообщение, если записей нет -->
+                    <p>Статей пока нет.</p>
+                    <?php endif; ?>
+                </div>
+
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn">←</button>
+                    <button class="slider-btn next-btn">→</button>
+                </div>
+                <div class="pagination"></div>
+            </div>
+
                 </div>
             </div>
         </div>
 
 
     </section>
+
+    <script>
+    const newsSlider = document.querySelector('#news-slider .news-cards');
+const prevBtnNews = document.querySelector('#news-slider .prev-btn');
+const nextBtnNews = document.querySelector('#news-slider .next-btn');
+const paginationNews = document.querySelector('#news-slider .pagination');
+
+let currentNewsIndex = 0; // Текущий индекс для второго слайдера
+let cardsToShowNews = calculateCardsToShowNews(); // Количество карточек на экране
+const totalNewsCards = document.querySelectorAll('#news-slider .card-news').length;
+let totalNewsPages = calculateTotalNewsPages(); // Количество страниц
+
+// Рассчитать количество карточек на экране в зависимости от ширины
+function calculateCardsToShowNews() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 767) return 1; // 1 карточка на маленьких экранах
+    if (screenWidth <= 1279) return 2; // 2 карточки при ширине до 1279px
+    return 3; // По умолчанию 3 карточки
+}
+
+// Рассчитать количество страниц с учетом количества карточек на экране
+function calculateTotalNewsPages() {
+    if (cardsToShowNews === 3) {
+        return totalNewsCards; // Листаем по одной карточке
+    } else {
+        return Math.ceil(totalNewsCards / cardsToShowNews); // Листаем группами (по 1 или по 2)
+    }
+}
+
+// Рассчитать максимальный индекс для ограничения
+function getMaxNewsIndex() {
+    if (cardsToShowNews === 3) {
+        return totalNewsCards - cardsToShowNews; // Ограничиваем листание до последней видимой карточки
+    } else {
+        return totalNewsPages - 1; // Последняя группа карточек
+    }
+}
+
+// Обновить слайдер
+function updateNewsSlider() {
+    const cardWidth = newsSlider.querySelector('.card-news').offsetWidth + 24; // Учитываем gap
+    const offset = currentNewsIndex * cardWidth * (cardsToShowNews === 3 ? 1 : cardsToShowNews); // Смещение зависит от состояния
+    newsSlider.style.transform = `translateX(-${offset}px)`;
+    updateNewsPagination();
+}
+
+// Обновить пагинацию
+function updateNewsPagination() {
+    if (!paginationNews) return; // Проверяем наличие контейнера пагинации
+    const dots = document.querySelectorAll('#news-slider .pagination-dot');
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentNewsIndex);
+    });
+}
+
+// Создать пагинацию
+function createNewsPagination() {
+    if (!paginationNews) return; // Проверяем наличие контейнера пагинации
+    paginationNews.innerHTML = ''; // Очистить контейнер
+    for (let i = 0; i < totalNewsPages; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('pagination-dot');
+        if (i === currentNewsIndex) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+            currentNewsIndex = i;
+            updateNewsSlider();
+        });
+        paginationNews.appendChild(dot);
+    }
+}
+
+// Листание назад
+prevBtnNews.addEventListener('click', () => {
+    currentNewsIndex = Math.max(currentNewsIndex - 1, 0); // Ограничение в 0
+    updateNewsSlider();
+});
+
+// Листание вперед
+nextBtnNews.addEventListener('click', () => {
+    currentNewsIndex = Math.min(currentNewsIndex + 1, getMaxNewsIndex()); // Ограничение до последней карточки/группы
+    updateNewsSlider();
+});
+
+// Свайпы для мобильных устройств
+let startNewsX = 0;
+let currentNewsX = 0;
+let isNewsSwiping = false;
+
+newsSlider.addEventListener('touchstart', (e) => {
+    startNewsX = e.touches[0].clientX; // Начальная точка касания
+    isNewsSwiping = true;
+});
+
+newsSlider.addEventListener('touchmove', (e) => {
+    if (!isNewsSwiping) return;
+    currentNewsX = e.touches[0].clientX;
+});
+
+newsSlider.addEventListener('touchend', () => {
+    if (!isNewsSwiping) return;
+    const swipeDistance = currentNewsX - startNewsX; // Расстояние свайпа
+    if (swipeDistance > 50) {
+        // Свайп вправо
+        currentNewsIndex = Math.max(currentNewsIndex - 1, 0);
+    } else if (swipeDistance < -50) {
+        // Свайп влево
+        currentNewsIndex = Math.min(currentNewsIndex + 1, getMaxNewsIndex());
+    }
+    updateNewsSlider();
+    isNewsSwiping = false;
+});
+
+// Обработчик изменения размера экрана
+window.addEventListener('resize', () => {
+    cardsToShowNews = calculateCardsToShowNews();
+    totalNewsPages = calculateTotalNewsPages();
+    createNewsPagination();
+    updateNewsSlider();
+});
+
+// Инициализация слайдера
+cardsToShowNews = calculateCardsToShowNews();
+totalNewsPages = calculateTotalNewsPages();
+createNewsPagination();
+updateNewsSlider();
+
+</script>
 @endsection

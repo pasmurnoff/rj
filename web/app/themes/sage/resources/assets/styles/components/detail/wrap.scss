@@ -143,10 +143,30 @@
 .interesting {
   padding-top: 160px;
 
+  @media screen and (max-width: 1279px) {
+    padding-top: 120px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding-top: 100px;
+  }
+
   &__head {
     display: flex;
     justify-content: space-between;
     gap: 36px;
+    margin-bottom: 48px;
+
+    @media screen and (max-width: 1279px) {
+      margin-bottom: 36px;
+    }
+
+    @media screen and (max-width: 1023px) {
+      gap: 16px;
+      flex-direction: column;
+      align-self: center;
+      text-align: center;
+    }
   }
 
   &__title {
@@ -154,11 +174,25 @@
       font-size: 42px;
       line-height: 46.2px;
       color: var(--black);
+
+      @media screen and (max-width: 1279px) {
+        font-size: 36px;
+        line-height: 39.6px;
+      }
+
+      @media screen and (max-width: 767px) {
+        font-size: 26px;
+        line-height: 28.6px;
+      }
     }
   }
 
   &__all {
     align-self: end;
+
+    @media screen and (max-width: 1023px) {
+      align-self: center;
+    }
   }
 
   &__link {
@@ -170,6 +204,11 @@
     font-weight: 700;
     white-space: nowrap;
     transition: 0.3s ease;
+
+    @media screen and (max-width: 767px) {
+      font-size: 15px;
+      line-height: 18px;
+    }
 
     &:hover {
       opacity: 0.8;
