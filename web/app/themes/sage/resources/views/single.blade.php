@@ -109,7 +109,7 @@ if ($news_query->have_posts()):
                                 <h3><a href="<?php        the_permalink(); ?>"><?php        the_title(); ?></a></h3>
                             </div>
                             <div class="card__text">
-                                <p><?php        echo wp_trim_words(get_the_excerpt(), 20, '...'); ?></p>
+                                <p><?php        echo wp_trim_words(get_the_excerpt(), 13, '...'); ?></p>
                             </div>
                         </div>
                     </div>

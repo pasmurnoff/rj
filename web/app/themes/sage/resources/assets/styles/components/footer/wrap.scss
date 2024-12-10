@@ -125,6 +125,20 @@
             line-height: 21px;
           }
         }
+
+        .span {
+          display: inline-block;
+          padding-left: 8px;
+          padding-right: 8px;
+          padding-bottom: 1px;
+          background: linear-gradient(75deg, #8585ff 0%, #6e6eea 100%);
+          border-radius: 17px;
+          font-weight: 600;
+          color: #fff;
+          font-size: 14px;
+          line-height: 18.2px;
+          margin-left: 6px;
+        }
       }
     }
   }
@@ -278,10 +292,12 @@
   @media screen and (max-width: 1279px) {
     width: 100%;
     height: auto;
+    gap: 30px;
   }
 
   @media screen and (max-width: 767px) {
     width: auto;
+    gap: 24px;
   }
 
   &__title {
@@ -299,6 +315,25 @@
     letter-spacing: -2%;
     font-weight: 800;
     color: #fff;
+
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+      line-height: 23.4px;
+    }
+  }
+
+  &__link {
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -2%;
+    font-weight: 800;
+    color: #fff;
+    transition: 0.3s ease;
+
+    &:hover {
+      transition: 0.3s ease;
+      opacity: 0.8;
+    }
 
     @media screen and (max-width: 767px) {
       font-size: 18px;

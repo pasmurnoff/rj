@@ -21,7 +21,7 @@
                                     <h3><a href="{{ get_permalink() }}">{{ the_title() }}</a></h3>
                                 </div>
                                 <div class="card__text">
-                                    <p>{{ wp_trim_words(get_the_excerpt(), 20) }}</p>
+                                    <p>{{ wp_trim_words(get_the_excerpt(), 14) }}</p>
                                 </div>
                             </div>
                         </div>

@@ -9,6 +9,9 @@
     border-radius: 24px;
     flex: 0 0 calc(33.333% - 16px);
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @media screen and (max-width: 1279px) {
       flex: 0 0 calc(50% - 12px); /* 2 карточки */
@@ -49,7 +52,7 @@
     }
 
     &__position {
-      height: 43px;
+      min-height: 42px;
 
       span {
         font-weight: 600;
@@ -61,7 +64,7 @@
     }
 
     &__quote {
-      margin-top: 16px;
+      // margin-top: 16px;
 
       blockquote {
         padding: 12px;

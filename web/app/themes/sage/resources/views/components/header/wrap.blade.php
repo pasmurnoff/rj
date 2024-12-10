@@ -25,8 +25,8 @@
         <div class="header__bottom">
             <div class="header__menu">
                 <ul class="header-menu">
-                    <li><a href="">О фонде</a></li>
-                    <li><a href="">Отчетность</a></li>
+                    <li><a href="/aboutus">О фонде</a></li>
+                    <li><a >Отчетность</a><span>Скоро</span></li>
                     <li><a href="/blog">Статьи</a></li>
                 </ul>
             </div>
@@ -43,10 +43,10 @@
     <div>
         <div class="mobmenu__container">
             <ul class="mobmenu__menu">
-                <li class="mobmenu__element"><a href="/produkciya" class="a">Главная</a></li>
-                <li class="mobmenu__element"><a href="/uslugi" class="a">О фонде</a></li>
-                <li class="mobmenu__element"><a href="/o-kompanii" class="a">Отчетность</a></li>
-                <li class="mobmenu__element"><a href="/o-kompanii" class="a">Статьи</a></li>
+                <li class="mobmenu__element"><a href="/" class="a">Главная</a></li>
+                <li class="mobmenu__element"><a href="/aboutus" class="a">О фонде</a></li>
+                <li class="mobmenu__element"><a class="a">Отчетность</a></li>
+                <li class="mobmenu__element"><a href="/blog" class="a">Статьи</a></li>
             </ul>
         </div>
         <div class="mobmenu__button">

@@ -232,11 +232,12 @@
       top: 100%;
       left: 0;
       background: var(--white);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(245, 247, 250, 1);
       border-radius: 16px;
-      padding: 8px 0;
+      padding: 4px 0;
       z-index: 10;
       width: 100%;
+      margin-top: 8px;
 
       &.open {
         display: block;
@@ -244,13 +245,16 @@
 
       .dropdown-item {
         padding: 10px 16px;
-        color: var(--purple);
+        color: var(--black);
         font-weight: 700;
+        font-size: 16px;
+        line-height: 17.6px;
         cursor: pointer;
         transition: background 0.3s ease;
 
         &:hover {
           background: #f0f0f0;
+          color: var(--purple);
         }
 
         &:active {

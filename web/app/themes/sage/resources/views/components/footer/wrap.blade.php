@@ -14,7 +14,7 @@
                         <span>Горячая линия</span>
                     </div>
                     <div class="fcontact-card__info">
-                        <span>+7 (960) 058-99-49</span>
+                        <span><a href="tel:89600589949" class="fcontact-card__link">+7 (960) 058-99-49</a></span>
                     </div>
                 </div>
 
@@ -23,7 +23,7 @@
                         <span>Адрес</span>
                     </div>
                     <div class="fcontact-card__info">
-                        <span>420030, Республика Татарстан, г. Казань ул. Красного Химика д. 3 офис 426.2</span>
+                        <span><a href="https://yandex.ru/maps/43/kazan/house/ulitsa_krasnogo_khimika_3/YEAYdgFkSUwDQFtvfXRxcHVnYg==/?ll=49.064072%2C55.801951&z=17.24" class="fcontact-card__link">420030, Республика Татарстан, г. Казань ул. Красного Химика д. 3 офис 426.2</a></span>
                     </div>
                 </div>
             </div>
@@ -54,10 +54,10 @@
         </div>
         <div class="footer__links">
             <ul>
-                <li><a href="">Главная</a></li>
-                <li><a href="">О фонде</a></li>
-                <li><a href="">Отчентность</a></li>
-                <li><a href="">Статьи</a></li>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/aboutus">О фонде</a></li>
+                <li><a>Отчентность</a><span class="span">Скоро</span></li>
+                <li><a href="/blog">Статьи</a></li>
             </ul>
         </div>
         <div class="footer__bottom">

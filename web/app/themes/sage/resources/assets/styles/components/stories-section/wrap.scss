@@ -112,3 +112,53 @@
     }
   }
 }
+
+.collapsible-quote {
+  position: relative;
+
+  .cit {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: max-height 0.3s ease-in-out;
+    margin: 0;
+
+    @media screen and (max-width: 1023px) {
+      -webkit-line-clamp: 5; /* Ограничиваем текст до 4 строк */
+      max-height: calc(1.5em * 5); /* Ограничение высоты */
+    }
+
+    &.expanded {
+      -webkit-line-clamp: unset; /* Убираем ограничение строк */
+      transition: 0.3s ease;
+      max-height: none; /* Полная высота текста */
+    }
+  }
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 17.6px;
+  cursor: pointer;
+  text-decoration: none;
+
+  @media screen and (max-width: 767px) {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  &.yellow {
+    color: rgba(255, 153, 0, 1);
+  }
+
+  &.green {
+    color: rgba(15, 205, 114, 1);
+  }
+
+  @media screen and (min-width: 1024px) {
+    display: none; /* Скрываем ссылку на больших экранах */
+  }
+}
